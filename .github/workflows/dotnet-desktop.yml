@@ -1,0 +1,47 @@
+name: Continuous Integration - .NETV1
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '9.0.x'
+  # Set this to the exact folder path in your GitHub repo
+  WORKING_DIRECTORY: WebApplications/WebApp01 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # This ensures all 'run' commands start in your project folder
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore dependencies
+      run: dotnet restore WebApp01.sln
+
+    - name: Build
+      run: dotnet build WebApp01.sln --no-restore --configuration Release
+
+    - name: Test
+      run: dotnet test WebApp01.sln --no-build --configuration Release --verbosity normal
+
+    - name: Publish
+      # Ensure you point to the .csproj file correctly
+      run: dotnet publish WebApp01.csproj --configuration Release --output ./publish
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: dotnet-webapp01
+        # Use the relative path to the publish folder
+        path: ${{ env.WORKING_DIRECTORY }}/publish
