@@ -30,10 +30,10 @@ jobs:
       run: dotnet test WebApp01.csproj --no-build --configuration Release --verbosity normal
 
     - name: Publish
-      run: dotnet publish WebApp01.csproj --configuration Release --output ./publish
+      run: dotnet publish WebApp01.csproj --configuration Release --output ./release
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: dotnet-webapp01
-        path: publish
+        path: release
