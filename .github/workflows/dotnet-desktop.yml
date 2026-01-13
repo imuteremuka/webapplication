@@ -1,4 +1,4 @@
-name: Continuous Integration - .NETV6
+name: Continuous Integration - .NETV7
 
 on:
   push:
@@ -21,13 +21,13 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Restore dependencies
-      run: dotnet restore WebApp01.sln
+      run:  dotnet restore WebApp01.csproj
 
     - name: Build
-      run: dotnet build WebApp01.sln --no-restore --configuration Release
+      run: dotnet build WebApp01.csproj --no-restore --configuration Release
 
     - name: Test
-      run: dotnet test WebApp01.sln --no-build --configuration Release --verbosity normal
+      run: dotnet test WebApp01.csproj --no-build --configuration Release --verbosity normal
 
     - name: Publish
       run: dotnet publish WebApp01.csproj --configuration Release --output ./publish
