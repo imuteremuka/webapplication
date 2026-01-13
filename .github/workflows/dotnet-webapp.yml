@@ -1,4 +1,4 @@
-name: Build and deploy .NET app to Azure Web App V2
+name: Build and deploy .NET app to Azure Web App V3
 
 permissions:
   id-token: write
