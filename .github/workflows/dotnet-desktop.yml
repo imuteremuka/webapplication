@@ -1,4 +1,4 @@
-name: Continuous Integration - .NETV1
+name: Continuous Integration - .NETV2
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 env:
   DOTNET_VERSION: '9.0.x'
   # Set this to the exact folder path in your GitHub repo
-  WORKING_DIRECTORY: WebApplications/WebApp01 
+  WORKING_DIRECTORY: WebApp01 
 
 jobs:
   build:
