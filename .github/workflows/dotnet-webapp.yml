@@ -1,11 +1,11 @@
-name: Build and deploy .NET app to Azure Web App V3
+name: Build and deploy .NET app to Azure Web App V4
 
 permissions:
   id-token: write
   contents: read
 
 env:
-  AZURE_WEBAPP_NAME: imapps-01
+  AZURE_WEBAPP_NAME: imapps-02
   AZURE_WEBAPP_PACKAGE_PATH: release
   DOTNET_VERSION: '9.0.x'
 
